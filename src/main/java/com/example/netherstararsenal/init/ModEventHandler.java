@@ -2,40 +2,25 @@ package com.example.netherstararsenal.init;
 
 import com.example.netherstararsenal.items.NetherStarArmorItem;
 import com.example.netherstararsenal.items.NetherStarSword;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
+import com.example.netherstararsenal.items.NetherBow;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.RecipeManager;
-import net.minecraft.world.item.crafting.CampfireCookingRecipe;
-import net.minecraft.world.item.crafting.SmeltingRecipe;
-import net.minecraft.world.item.crafting.BlastingRecipe;
-import net.minecraft.world.item.crafting.SmokingRecipe;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import java.util.Iterator;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraft.world.entity.projectile.Arrow;
 import net.minecraft.world.phys.HitResult;
-import com.example.netherstararsenal.items.NetherBow;
-import net.minecraft.world.level.Explosion;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ModEventHandler {
+    
     // Sword: Cook drops if killed by Nether Star Sword
     @SubscribeEvent
     public static void onLivingDrops(LivingDropsEvent event) {

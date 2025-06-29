@@ -1,0 +1,13 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="MIT"
+
+[[mods]]
+modId="netherstararsenal"
+version="1.0.0"
+displayName="Nether Star Arsenal"
+description='''
+A mod that adds powerful Nether Star-based armor, tools, and weapons to Minecraft.
+Features enhanced Nether Star armor with superior protection, powerful tools with increased efficiency,
+and a special Nether Bow with enhanced capabilities.
+''' 
