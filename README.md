@@ -42,6 +42,7 @@ A Minecraft Forge mod that adds powerful armor and tools crafted from Nether Sta
 # Build the mod
 ./gradlew build
 
+
 # Run in development environment
 ./gradlew runClient
 ./gradlew runServer
@@ -73,9 +74,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Credits
 
-- Created by [Your Name]
-- Built with Minecraft Forge
-- Textures and models by [Your Name/Artist]
+- **Coder**: Elijah Farrell
+- **Built with**: Minecraft Forge
+- **Textures**: Based on [Nether Star Netherite Texture Pack](https://www.planetminecraft.com/texture-pack/nether-star-netherite/) by the original creator
 
 ## Support
 
