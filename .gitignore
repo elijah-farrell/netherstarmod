@@ -1,6 +1,7 @@
 # Gradle
 .gradle/
 build/
+bin/
 out/
 classes/
 
@@ -38,7 +39,8 @@ screenshots/
 
 # Temporary files
 *.tmp
-*.temp 
+*.temp
+
 # Ignore Gradle project-specific cache directory
 .gradle
 
