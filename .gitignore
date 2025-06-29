@@ -1,0 +1,41 @@
+# Gradle
+.gradle/
+build/
+out/
+classes/
+
+# Eclipse
+*.launch
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# VS Code
+.vscode/
+
+# MacOS
+*.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Minecraft
+run/
+logs/
+crash-reports/
+saves/
+screenshots/
+
+# Forge
+*.log
+*.zip
+*.jar
+
+# Temporary files
+*.tmp
+*.temp 
