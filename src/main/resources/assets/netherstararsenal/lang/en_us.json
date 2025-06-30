@@ -11,15 +11,15 @@
   "item.netherstararsenal.nether_star_shovel": "Nether Star Shovel",
   "item.netherstararsenal.nether_bow": "Nether Bow",
   
-  "tooltip.netherstararsenal.helmet_effect": "§6Helmet Effect: §fNight Vision",
-  "tooltip.netherstararsenal.chestplate_effect": "§6Chestplate Effect: §fExtra Health",
-  "tooltip.netherstararsenal.leggings_effect": "§6Leggings Effect: §fSlightly Extra Speed",
-  "tooltip.netherstararsenal.boots_effect": "§6Boots Effect: §fFire Walking, Fall Damage Immunity",
-  "tooltip.netherstararsenal.armor_set_bonus": "§bFull Set Bonus: §fFlight, Regeneration, Fire Resistance, Wither Invulnerability",
-  "tooltip.netherstararsenal.sword_effect": "§6Sword Effect: §fWither effect and super short fire effect, cooks anything it kills",
-  "tooltip.netherstararsenal.pickaxe_effect": "§6Pickaxe Effect: §fAuto-smelts ores when mined",
-  "tooltip.netherstararsenal.axe_effect": "§6Axe Effect: §fBreaks entire trees (Treecapitator)",
-  "tooltip.netherstararsenal.shovel_effect": "§6Shovel Effect: §fDigs 3x3 area",
-  "tooltip.netherstararsenal.bow_effect": "§6Bow Effect: §fFires flaming/explosive arrows",
-  "tooltip.netherstararsenal.piglins_neutral": "§dMakes Piglins Neutral"
+  "tooltip.netherstararsenal.helmet_effects": "§5Night Vision",
+  "tooltip.netherstararsenal.chestplate_effects": "§cExtra Health: §fIncreases maximum health by 2 hearts",
+  "tooltip.netherstararsenal.leggings_effects": "§aSpeed Boost (20%)",
+  "tooltip.netherstararsenal.boots_effects": "§6Fire Walking",
+  "tooltip.netherstararsenal.armor_set_bonus": "§bFull Set Bonus:\n§9Creative Flight\n§dRegeneration\n§6Fire Resistance\n§8Wither Invulnerability\n§ePiglins Neutral",
+  
+  "tooltip.netherstararsenal.sword_effects": "§8Wither Effect\n§cFire Steal",
+  "tooltip.netherstararsenal.pickaxe_effects": "§eAuto-Smelting",
+  "tooltip.netherstararsenal.axe_effects": "§2Treecapitator",
+  "tooltip.netherstararsenal.shovel_effects": "§73x3 Digging (Hold-Shift)",
+  "tooltip.netherstararsenal.bow_effects": "§4Explosive Arrows"
 } 

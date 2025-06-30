@@ -8,9 +8,10 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 /**
- * Handles registration of all custom items for the Nether Star Arsenal mod
+ * Handles registration of all items for the Nether Star Arsenal mod
+ * Registers items with the game registry and provides static references
  * 
- * @author CS Graduate Portfolio
+ * @author Elijah Farrell
  */
 public class ItemInit {
     

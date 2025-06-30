@@ -1,68 +1,33 @@
 package com.example.netherstararsenal.items;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.AxeItem;
-import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.item.Tiers;
+import net.minecraft.world.entity.player.Player;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Nether Star Axe with treecapitator functionality
  * Breaks entire trees when chopping the bottom log
  * 
- * @author CS Graduate Portfolio
+ * @author Elijah Farrell
  */
 public class NetherStarAxe extends AxeItem {
-    
-    /**
-     * Custom tier for Nether Star tools
-     * Provides high chopping speed and durability
-     */
-    private static final Tier NETHER_STAR_TIER = new Tier() {
-        @Override
-        public int getUses() {
-            return 2500; // High durability
-        }
-        
-        @Override
-        public float getSpeed() {
-            return 12.0f; // Very fast chopping speed
-        }
-        
-        @Override
-        public float getAttackDamageBonus() {
-            return 10.0f; // High damage
-        }
-        
-        @Override
-        public int getLevel() {
-            return 5; // Higher than netherite
-        }
-        
-        @Override
-        public int getEnchantmentValue() {
-            return 25; // High enchantability
-        }
-        
-        @Override
-        public Ingredient getRepairIngredient() {
-            return Ingredient.of(Items.NETHER_STAR);
-        }
-    };
     
     /**
      * Constructor for Nether Star Axe
@@ -72,10 +37,9 @@ public class NetherStarAxe extends AxeItem {
     }
     
     @Override
-    public void appendHoverText(@Nonnull ItemStack stack, Level level, @Nonnull List<Component> tooltip, @Nonnull TooltipFlag flag) {
+    public void appendHoverText(@Nonnull ItemStack stack, @Nullable Level level, @Nonnull List<Component> tooltip, @Nonnull TooltipFlag flag) {
         super.appendHoverText(stack, level, tooltip, flag);
-        tooltip.add(Component.translatable("tooltip.netherstararsenal.axe_effect"));
-        tooltip.add(Component.translatable("tooltip.netherstararsenal.piglins_neutral"));
+        tooltip.add(Component.translatable("tooltip.netherstararsenal.axe_effects"));
     }
     
     /**
@@ -83,11 +47,11 @@ public class NetherStarAxe extends AxeItem {
      * Breaks entire trees when chopping the bottom log
      */
     @Override
-    public boolean mineBlock(@Nonnull ItemStack stack, Level level, @Nonnull BlockState state, @Nonnull BlockPos pos, @Nonnull LivingEntity miner) {
-        // Check if the broken block is a log
-        if (isLog(state.getBlock())) {
-            // Find and break the entire tree
-            breakEntireTree(level, pos, miner, stack);
+    public boolean mineBlock(@Nonnull ItemStack stack, @Nonnull Level level, @Nonnull BlockState state, @Nonnull BlockPos pos, @Nonnull LivingEntity miner) {
+        // Check if the broken block is a log and miner is a player
+        if (isLog(state.getBlock()) && miner instanceof Player player) {
+            // Break the entire tree
+            breakEntireTree(level, pos, player, stack);
         }
         
         return super.mineBlock(stack, level, state, pos, miner);
@@ -115,19 +79,19 @@ public class NetherStarAxe extends AxeItem {
      * 
      * @param level The world level
      * @param startPos The starting position (bottom log)
-     * @param miner The entity mining the tree
+     * @param player The player chopping
      * @param tool The tool being used
      */
-    private void breakEntireTree(Level level, BlockPos startPos, LivingEntity miner, ItemStack tool) {
+    private void breakEntireTree(Level level, BlockPos startPos, Player player, ItemStack tool) {
         List<BlockPos> treeBlocks = new ArrayList<>();
-        findTreeBlocks(level, startPos, treeBlocks, new ArrayList<>());
+        findTreeBlocks(level, startPos, treeBlocks, new HashSet<>());
         
         // Break all tree blocks
         for (BlockPos pos : treeBlocks) {
             BlockState state = level.getBlockState(pos);
-            if (state.getBlock() != Blocks.AIR) {
+            if (state.getBlock() != Blocks.AIR && player.distanceToSqr(pos.getX(), pos.getY(), pos.getZ()) <= 25.0) {
                 // Drop the block
-                Block.dropResources(state, level, pos, null, miner, tool);
+                Block.dropResources(state, level, pos, null, player, tool);
                 // Remove the block
                 level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
             }
@@ -138,31 +102,37 @@ public class NetherStarAxe extends AxeItem {
      * Recursively finds all blocks that are part of the tree
      * 
      * @param level The world level
-     * @param pos The current position to check
-     * @param treeBlocks List to store found tree blocks
-     * @param checkedPositions List of already checked positions to prevent infinite loops
+     * @param pos The current position
+     * @param treeBlocks List to store tree block positions
+     * @param visited Set of already visited positions
      */
-    private void findTreeBlocks(Level level, BlockPos pos, List<BlockPos> treeBlocks, List<BlockPos> checkedPositions) {
-        if (checkedPositions.contains(pos)) {
-            return; // Already checked this position
-        }
+    private void findTreeBlocks(Level level, BlockPos pos, List<BlockPos> treeBlocks, Set<BlockPos> visited) {
+        if (visited.contains(pos)) return;
+        visited.add(pos);
         
-        checkedPositions.add(pos);
         BlockState state = level.getBlockState(pos);
+        Block block = state.getBlock();
         
-        // Check if this block is part of the tree
-        if (isLog(state.getBlock()) || isLeaves(state.getBlock())) {
+        // Check if this is a log or leaves
+        if (isLog(block) || isLeaves(block)) {
             treeBlocks.add(pos);
             
-            // Check adjacent blocks (including diagonals for leaves)
-            for (Direction direction : Direction.values()) {
-                BlockPos adjacentPos = pos.relative(direction);
-                findTreeBlocks(level, adjacentPos, treeBlocks, checkedPositions);
+            // Check adjacent blocks (including diagonals)
+            for (int x = -1; x <= 1; x++) {
+                for (int y = -1; y <= 1; y++) {
+                    for (int z = -1; z <= 1; z++) {
+                        if (x == 0 && y == 0 && z == 0) continue;
+                        
+                        BlockPos newPos = pos.offset(x, y, z);
+                        BlockState newState = level.getBlockState(newPos);
+                        Block newBlock = newState.getBlock();
+                        
+                        if ((isLog(newBlock) || isLeaves(newBlock)) && !visited.contains(newPos)) {
+                            findTreeBlocks(level, newPos, treeBlocks, visited);
+                        }
+                    }
+                }
             }
-            
-            // For logs, also check blocks above
-            BlockPos abovePos = pos.above();
-            findTreeBlocks(level, abovePos, treeBlocks, checkedPositions);
         }
     }
     
@@ -186,10 +156,5 @@ public class NetherStarAxe extends AxeItem {
     @Override
     public boolean isValidRepairItem(@Nonnull ItemStack toRepair, @Nonnull ItemStack repair) {
         return repair.getItem() == Items.NETHER_STAR;
-    }
-    
-    @Override
-    public boolean makesPiglinsNeutral(@Nonnull ItemStack stack, @Nonnull LivingEntity wearer) {
-        return true; // Nether Star axe makes piglins neutral
     }
 } 

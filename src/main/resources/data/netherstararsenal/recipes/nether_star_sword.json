@@ -3,14 +3,14 @@
   "pattern": [
     " N ",
     " N ",
-    " S "
+    " I "
   ],
   "key": {
     "N": {
       "item": "minecraft:nether_star"
     },
-    "S": {
-      "item": "minecraft:stick"
+    "I": {
+      "item": "minecraft:netherite_ingot"
     }
   },
   "result": {

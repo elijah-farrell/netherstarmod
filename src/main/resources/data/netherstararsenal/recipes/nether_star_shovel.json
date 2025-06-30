@@ -1,13 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "S",
-    "S",
-    "S"
+    " S ",
+    " I ",
+    " I "
   ],
   "key": {
     "S": {
       "item": "minecraft:nether_star"
+    },
+    "I": {
+      "item": "minecraft:netherite_ingot"
     }
   },
   "result": {

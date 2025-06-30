@@ -14,13 +14,14 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.List;
 
 /**
- * Nether Bow with special arrow effects
- * Fires flaming arrows or explosive arrows based on arrow type
+ * Nether Bow with explosive arrow effects
+ * Fires explosive arrows and provides fire resistance
  * 
- * @author CS Graduate Portfolio
+ * @author Elijah Farrell
  */
 public class NetherBow extends BowItem {
     
@@ -32,17 +33,16 @@ public class NetherBow extends BowItem {
     }
     
     @Override
-    public void appendHoverText(@Nonnull ItemStack stack, Level level, @Nonnull List<Component> tooltip, @Nonnull TooltipFlag flag) {
+    public void appendHoverText(@Nonnull ItemStack stack, @Nullable Level level, @Nonnull List<Component> tooltip, @Nonnull TooltipFlag flag) {
         super.appendHoverText(stack, level, tooltip, flag);
-        tooltip.add(Component.translatable("tooltip.netherstararsenal.bow_effect"));
-        tooltip.add(Component.translatable("tooltip.netherstararsenal.piglins_neutral"));
+        tooltip.add(Component.translatable("tooltip.netherstararsenal.bow_effects"));
     }
     
     /**
      * Override to add special effects when shooting
      */
     @Override
-    public void releaseUsing(@Nonnull ItemStack stack, Level level, @Nonnull LivingEntity shooter, int timeLeft) {
+    public void releaseUsing(@Nonnull ItemStack stack, @Nonnull Level level, @Nonnull LivingEntity shooter, int timeLeft) {
         if (shooter instanceof Player player) {
             // Add fire resistance effect to shooter
             player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 60, 0));
@@ -56,10 +56,5 @@ public class NetherBow extends BowItem {
     @Override
     public boolean isValidRepairItem(@Nonnull ItemStack toRepair, @Nonnull ItemStack repair) {
         return repair.getItem() == Items.NETHER_STAR;
-    }
-    
-    @Override
-    public boolean makesPiglinsNeutral(@Nonnull ItemStack stack, @Nonnull LivingEntity wearer) {
-        return true; // Nether Bow makes piglins neutral
     }
 } 

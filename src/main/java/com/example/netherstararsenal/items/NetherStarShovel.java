@@ -16,13 +16,14 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.List;
 
 /**
  * Nether Star Shovel with 3x3 digging capability
  * Breaks a 3x3 area when digging
  * 
- * @author CS Graduate Portfolio
+ * @author Elijah Farrell
  */
 public class NetherStarShovel extends ShovelItem {
     
@@ -34,21 +35,19 @@ public class NetherStarShovel extends ShovelItem {
     }
     
     @Override
-    public void appendHoverText(@Nonnull ItemStack stack, Level level, @Nonnull List<Component> tooltip, @Nonnull TooltipFlag flag) {
+    public void appendHoverText(@Nonnull ItemStack stack, @Nullable Level level, @Nonnull List<Component> tooltip, @Nonnull TooltipFlag flag) {
         super.appendHoverText(stack, level, tooltip, flag);
-        tooltip.add(Component.translatable("tooltip.netherstararsenal.shovel_effect"));
-        tooltip.add(Component.translatable("tooltip.netherstararsenal.piglins_neutral"));
+        tooltip.add(Component.translatable("tooltip.netherstararsenal.shovel_effects"));
     }
     
     /**
      * Override to add 3x3 digging capability
-     * Breaks a 3x3 area when digging
+     * Breaks a 3x3 area when digging and shift is held
      */
     @Override
-    public boolean mineBlock(@Nonnull ItemStack stack, Level level, @Nonnull BlockState state, @Nonnull BlockPos pos, @Nonnull LivingEntity miner) {
-        // Check if the broken block is diggable
-        if (isDiggable(state.getBlock()) && miner instanceof Player) {
-            Player player = (Player) miner;
+    public boolean mineBlock(@Nonnull ItemStack stack, @Nonnull Level level, @Nonnull BlockState state, @Nonnull BlockPos pos, @Nonnull LivingEntity miner) {
+        // Check if the broken block is diggable and shift is held
+        if (isDiggable(state.getBlock()) && miner instanceof Player player && player.isShiftKeyDown()) {
             // Get the direction the player is facing
             Direction facing = player.getDirection();
             
@@ -119,7 +118,6 @@ public class NetherStarShovel extends ShovelItem {
         
         // Calculate the relative positions based on facing direction
         Direction left = facing.getClockWise();
-        Direction right = facing.getCounterClockWise();
         
         int index = 0;
         for (int x = -1; x <= 1; x++) {
@@ -140,10 +138,5 @@ public class NetherStarShovel extends ShovelItem {
     @Override
     public boolean isValidRepairItem(@Nonnull ItemStack toRepair, @Nonnull ItemStack repair) {
         return repair.getItem() == Items.NETHER_STAR;
-    }
-    
-    @Override
-    public boolean makesPiglinsNeutral(@Nonnull ItemStack stack, @Nonnull LivingEntity wearer) {
-        return true; // Nether Star shovel makes piglins neutral
     }
 } 
