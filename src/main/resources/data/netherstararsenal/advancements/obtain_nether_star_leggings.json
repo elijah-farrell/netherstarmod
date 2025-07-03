@@ -1,0 +1,22 @@
+{
+  "parent": "minecraft:recipes/root",
+  "display": {
+    "icon": { "item": "netherstararsenal:nether_star_leggings" },
+    "title": { "translate": "advancement.netherstararsenal.obtain_nether_star_leggings.title" },
+    "description": { "translate": "advancement.netherstararsenal.obtain_nether_star_leggings.desc" },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "background": "minecraft:textures/gui/advancements/backgrounds/adventure.png"
+  },
+  "criteria": {
+    "obtain_leggings": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          { "items": ["netherstararsenal:nether_star_leggings"] }
+        ]
+      }
+    }
+  }
+} 

@@ -1,5 +1,6 @@
 package com.example.netherstararsenal.items;
 
+import com.example.netherstararsenal.Config;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
@@ -36,7 +37,10 @@ public class NetherStarPickaxe extends PickaxeItem {
     @Override
     public void appendHoverText(@Nonnull ItemStack stack, @Nullable Level level, @Nonnull List<Component> tooltip, @Nonnull TooltipFlag flag) {
         super.appendHoverText(stack, level, tooltip, flag);
-        tooltip.add(Component.translatable("tooltip.netherstararsenal.pickaxe_effects"));
+        
+        if (Config.ENABLE_AUTO_SMELTING.get()) {
+            tooltip.add(Component.translatable("tooltip.netherstararsenal.pickaxe_effects").withStyle(style -> style.withColor(0xFF5555)));
+        }
     }
     
     /**
@@ -46,7 +50,7 @@ public class NetherStarPickaxe extends PickaxeItem {
     @Override
     public boolean mineBlock(@Nonnull ItemStack stack, @Nonnull Level level, @Nonnull BlockState state, @Nonnull BlockPos pos, @Nonnull LivingEntity miner) {
         // Check if the broken block can be smelted
-        if (canSmelt(state.getBlock()) && miner instanceof Player) {
+        if (Config.ENABLE_AUTO_SMELTING.get() && canSmelt(state.getBlock()) && miner instanceof Player) {
             // Get the smelted result
             ItemStack smeltedResult = getSmeltedResult(state.getBlock());
             if (!smeltedResult.isEmpty()) {

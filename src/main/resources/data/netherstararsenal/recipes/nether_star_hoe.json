@@ -1,20 +1,20 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    " SN",
-    "S N",
-    " SN"
+    " N ",
+    " I ",
+    " I "
   ],
   "key": {
-    "S": {
+    "N": {
       "item": "minecraft:nether_star"
     },
-    "N": {
+    "I": {
       "item": "minecraft:netherite_ingot"
     }
   },
   "result": {
-    "item": "netherstararsenal:nether_bow",
+    "item": "netherstararsenal:nether_star_hoe",
     "count": 1
   }
 } 

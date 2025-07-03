@@ -1,5 +1,6 @@
 package com.example.netherstararsenal.items;
 
+import com.example.netherstararsenal.Config;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
@@ -39,7 +40,10 @@ public class NetherStarAxe extends AxeItem {
     @Override
     public void appendHoverText(@Nonnull ItemStack stack, @Nullable Level level, @Nonnull List<Component> tooltip, @Nonnull TooltipFlag flag) {
         super.appendHoverText(stack, level, tooltip, flag);
-        tooltip.add(Component.translatable("tooltip.netherstararsenal.axe_effects"));
+        
+        if (Config.ENABLE_TREECAPITATOR.get()) {
+            tooltip.add(Component.translatable("tooltip.netherstararsenal.axe_effects").withStyle(style -> style.withColor(0xFF5555)));
+        }
     }
     
     /**
@@ -49,7 +53,7 @@ public class NetherStarAxe extends AxeItem {
     @Override
     public boolean mineBlock(@Nonnull ItemStack stack, @Nonnull Level level, @Nonnull BlockState state, @Nonnull BlockPos pos, @Nonnull LivingEntity miner) {
         // Check if the broken block is a log and miner is a player
-        if (isLog(state.getBlock()) && miner instanceof Player player) {
+        if (Config.ENABLE_TREECAPITATOR.get() && isLog(state.getBlock()) && miner instanceof Player player) {
             // Break the entire tree
             breakEntireTree(level, pos, player, stack);
         }

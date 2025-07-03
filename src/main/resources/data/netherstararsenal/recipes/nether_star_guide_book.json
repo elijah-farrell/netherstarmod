@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " B ",
+    "BNB",
+    " B "
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:book"
+    },
+    "N": {
+      "item": "minecraft:nether_star"
+    }
+  },
+  "result": {
+    "item": "netherstararsenal:nether_star_guide_book",
+    "count": 1
+  }
+} 

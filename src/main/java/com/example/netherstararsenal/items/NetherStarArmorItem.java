@@ -18,8 +18,8 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 /**
- * Base class for Nether Star armor items with special abilities
- * Provides creative-like flight and passive effects when full set is equipped
+ * Nether Star armor items for progression mod
+ * Provides balanced protection and moderate bonuses
  * 
  * @author Elijah Farrell
  */
@@ -27,16 +27,16 @@ public class NetherStarArmorItem extends ArmorItem {
     
     /**
      * Custom armor material for Nether Star armor
-     * Provides high protection and special abilities
+     * Provides good protection for mid-game progression
      */
     private static final ArmorMaterial NETHER_STAR_MATERIAL = new ArmorMaterial() {
         @Override
         public int getDurabilityForType(@Nonnull Type type) {
             return switch (type) {
-                case HELMET -> 500;
-                case CHESTPLATE -> 800;
-                case LEGGINGS -> 600;
-                case BOOTS -> 400;
+                case HELMET -> 611; // 1.5x Netherite helmet (407 * 1.5)
+                case CHESTPLATE -> 888; // 1.5x Netherite chestplate (592 * 1.5)
+                case LEGGINGS -> 833; // 1.5x Netherite leggings (555 * 1.5)
+                case BOOTS -> 488; // 1.5x Netherite boots (325 * 1.5)
             };
         }
         
@@ -52,7 +52,7 @@ public class NetherStarArmorItem extends ArmorItem {
         
         @Override
         public int getEnchantmentValue() {
-            return 25; // High enchantability
+            return 22; 
         }
         
         @Override
@@ -72,12 +72,12 @@ public class NetherStarArmorItem extends ArmorItem {
         
         @Override
         public float getToughness() {
-            return 3.0f; // High toughness
+            return 3.5f; // Moderate toughness
         }
         
         @Override
         public float getKnockbackResistance() {
-            return 0.1f; // Some knockback resistance
+            return 0.15f; // Slight knockback resistance
         }
     };
     
@@ -95,16 +95,6 @@ public class NetherStarArmorItem extends ArmorItem {
     public void appendHoverText(@Nonnull ItemStack stack, @Nullable Level level, @Nonnull List<Component> tooltip, @Nonnull TooltipFlag flag) {
         super.appendHoverText(stack, level, tooltip, flag);
         
-        // Show individual armor piece effects
-        switch (this.getType()) {
-            case HELMET -> tooltip.add(Component.translatable("tooltip.netherstararsenal.helmet_effects"));
-            case CHESTPLATE -> tooltip.add(Component.translatable("tooltip.netherstararsenal.chestplate_effects"));
-            case LEGGINGS -> tooltip.add(Component.translatable("tooltip.netherstararsenal.leggings_effects"));
-            case BOOTS -> tooltip.add(Component.translatable("tooltip.netherstararsenal.boots_effects"));
-        }
-        
-        // Add full set bonus
-        tooltip.add(Component.translatable("tooltip.netherstararsenal.armor_set_bonus"));
     }
     
     /**

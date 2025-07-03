@@ -43,7 +43,10 @@ public class ItemInit {
     public static final RegistryObject<Item> NETHER_STAR_SHOVEL = ITEMS.register("nether_star_shovel",
             () -> new NetherStarShovel(new Item.Properties()));
     
-    // Nether Bow - goes in Combat tab
-    public static final RegistryObject<Item> NETHER_BOW = ITEMS.register("nether_bow",
-            () -> new NetherBow(new Item.Properties()));
+    public static final RegistryObject<Item> NETHER_STAR_HOE = ITEMS.register("nether_star_hoe",
+            () -> new NetherStarHoe(new Item.Properties()));
+    
+    // Guide Book - goes in Misc tab
+    public static final RegistryObject<Item> NETHER_STAR_GUIDE_BOOK = ITEMS.register("nether_star_guide_book",
+            () -> new NetherStarGuideBook(new Item.Properties()));
 } 

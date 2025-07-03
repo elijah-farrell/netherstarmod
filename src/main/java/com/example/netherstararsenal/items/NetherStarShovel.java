@@ -1,5 +1,6 @@
 package com.example.netherstararsenal.items;
 
+import com.example.netherstararsenal.Config;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -37,7 +38,10 @@ public class NetherStarShovel extends ShovelItem {
     @Override
     public void appendHoverText(@Nonnull ItemStack stack, @Nullable Level level, @Nonnull List<Component> tooltip, @Nonnull TooltipFlag flag) {
         super.appendHoverText(stack, level, tooltip, flag);
-        tooltip.add(Component.translatable("tooltip.netherstararsenal.shovel_effects"));
+        
+        if (Config.ENABLE_3X3_DIGGING.get()) {
+            tooltip.add(Component.translatable("tooltip.netherstararsenal.shovel_effects").withStyle(style -> style.withColor(0xFF5555)));
+        }
     }
     
     /**
@@ -47,7 +51,7 @@ public class NetherStarShovel extends ShovelItem {
     @Override
     public boolean mineBlock(@Nonnull ItemStack stack, @Nonnull Level level, @Nonnull BlockState state, @Nonnull BlockPos pos, @Nonnull LivingEntity miner) {
         // Check if the broken block is diggable and shift is held
-        if (isDiggable(state.getBlock()) && miner instanceof Player player && player.isShiftKeyDown()) {
+        if (Config.ENABLE_3X3_DIGGING.get() && isDiggable(state.getBlock()) && miner instanceof Player player && player.isShiftKeyDown()) {
             // Get the direction the player is facing
             Direction facing = player.getDirection();
             
