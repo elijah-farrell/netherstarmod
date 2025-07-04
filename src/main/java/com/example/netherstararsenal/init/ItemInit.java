@@ -17,36 +17,25 @@ public class ItemInit {
     
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, "netherstararsenal");
     
-    // Nether Star Armor - goes in Combat tab
+    // Nether Star Armor
     public static final RegistryObject<Item> NETHER_STAR_HELMET = ITEMS.register("nether_star_helmet",
             () -> new NetherStarArmorItem(ArmorItem.Type.HELMET, new Item.Properties()));
-    
     public static final RegistryObject<Item> NETHER_STAR_CHESTPLATE = ITEMS.register("nether_star_chestplate",
             () -> new NetherStarArmorItem(ArmorItem.Type.CHESTPLATE, new Item.Properties()));
-    
     public static final RegistryObject<Item> NETHER_STAR_LEGGINGS = ITEMS.register("nether_star_leggings",
             () -> new NetherStarArmorItem(ArmorItem.Type.LEGGINGS, new Item.Properties()));
-    
     public static final RegistryObject<Item> NETHER_STAR_BOOTS = ITEMS.register("nether_star_boots",
             () -> new NetherStarArmorItem(ArmorItem.Type.BOOTS, new Item.Properties()));
     
-    // Nether Star Tools - Sword goes in Combat, others go in Tools & Utilities
+    // Nether Star Tools
     public static final RegistryObject<Item> NETHER_STAR_SWORD = ITEMS.register("nether_star_sword",
             () -> new NetherStarSword(new Item.Properties()));
-    
     public static final RegistryObject<Item> NETHER_STAR_PICKAXE = ITEMS.register("nether_star_pickaxe",
             () -> new NetherStarPickaxe(new Item.Properties()));
-    
     public static final RegistryObject<Item> NETHER_STAR_AXE = ITEMS.register("nether_star_axe",
             () -> new NetherStarAxe(new Item.Properties()));
-    
     public static final RegistryObject<Item> NETHER_STAR_SHOVEL = ITEMS.register("nether_star_shovel",
             () -> new NetherStarShovel(new Item.Properties()));
-    
     public static final RegistryObject<Item> NETHER_STAR_HOE = ITEMS.register("nether_star_hoe",
             () -> new NetherStarHoe(new Item.Properties()));
-    
-    // Guide Book - goes in Misc tab
-    public static final RegistryObject<Item> NETHER_STAR_GUIDE_BOOK = ITEMS.register("nether_star_guide_book",
-            () -> new NetherStarGuideBook(new Item.Properties()));
 } 

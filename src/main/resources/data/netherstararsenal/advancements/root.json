@@ -1,0 +1,16 @@
+{
+  "display": {
+    "icon": { "item": "netherstararsenal:nether_star_sword" },
+    "title": { "translate": "advancement.netherstararsenal.root.title" },
+    "description": { "translate": "advancement.netherstararsenal.root.desc" },
+    "background": "netherstararsenal:textures/gui/advancements/background.png",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "frame": "task"
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+} 

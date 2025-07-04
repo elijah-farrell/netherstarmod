@@ -48,5 +48,7 @@
   "advancement.netherstararsenal.obtain_nether_star_leggings.title": "Obtain the Nether Star Leggings",
   "advancement.netherstararsenal.obtain_nether_star_leggings.desc": "Acquire the Nether Star Leggings.",
   "advancement.netherstararsenal.obtain_nether_star_boots.title": "Obtain the Nether Star Boots",
-  "advancement.netherstararsenal.obtain_nether_star_boots.desc": "Acquire the Nether Star Boots."
+  "advancement.netherstararsenal.obtain_nether_star_boots.desc": "Acquire the Nether Star Boots.",
+  "advancement.netherstararsenal.root.title": "Nether Star Arsenal",
+  "advancement.netherstararsenal.root.desc": "Unlock the secrets of the Nether Star Arsenal."
 } 
