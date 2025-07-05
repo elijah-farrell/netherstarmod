@@ -3,14 +3,26 @@
     "icon": { "item": "netherstararsenal:nether_star_sword" },
     "title": { "translate": "advancement.netherstararsenal.root.title" },
     "description": { "translate": "advancement.netherstararsenal.root.desc" },
-    "background": "netherstararsenal:textures/gui/advancements/background.png",
-    "show_toast": false,
-    "announce_to_chat": false,
-    "frame": "task"
+    "show_toast": true,
+    "announce_to_chat": true,
+    "frame": "goal"
   },
   "criteria": {
-    "impossible": {
-      "trigger": "minecraft:impossible"
+    "obtain_any_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          { "items": ["netherstararsenal:nether_star_helmet"] },
+          { "items": ["netherstararsenal:nether_star_chestplate"] },
+          { "items": ["netherstararsenal:nether_star_leggings"] },
+          { "items": ["netherstararsenal:nether_star_boots"] },
+          { "items": ["netherstararsenal:nether_star_sword"] },
+          { "items": ["netherstararsenal:nether_star_pickaxe"] },
+          { "items": ["netherstararsenal:nether_star_axe"] },
+          { "items": ["netherstararsenal:nether_star_shovel"] },
+          { "items": ["netherstararsenal:nether_star_hoe"] }
+        ]
+      }
     }
   }
 } 
